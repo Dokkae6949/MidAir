@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqw5kw4hssydu"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_5h3oh"]
+[ext_resource type="PackedScene" uid="uid://cexy13v0tvdum" path="res://scenes/player.tscn" id="1_dgsb5"]
+[ext_resource type="PackedScene" uid="uid://bc5in6j6v8i85" path="res://scenes/meteors/meteor_large.tscn" id="2_1jdno"]
+[ext_resource type="Script" path="res://scripts/MeteorManager.gd" id="2_exwdh"]
+[ext_resource type="PackedScene" uid="uid://cigkullf3ruke" path="res://scenes/meteors/meteor_small.tscn" id="4_ofb3g"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_5h3oh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.184314, 0.172549, 0.168627, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_dgsb5")]
+
+[node name="MeteorManager" type="Node2D" parent="."]
+script = ExtResource("2_exwdh")
+meteors = Array[PackedScene]([ExtResource("2_1jdno"), ExtResource("4_ofb3g")])

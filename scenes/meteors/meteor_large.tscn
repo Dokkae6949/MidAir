@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc5in6j6v8i85"]
+
+[ext_resource type="Texture2D" uid="uid://cvkcnew1f82y2" path="res://assets/tth.png" id="1_3bixu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
+
+[node name="MeteorLarge" type="AnimatableBody2D"]
+sync_to_physics = false
+
+[node name="MeteorLarge" type="Sprite2D" parent="."]
+texture = ExtResource("1_3bixu")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rcw44")
