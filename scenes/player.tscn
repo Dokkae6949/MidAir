@@ -1,16 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://cexy13v0tvdum"]
+[gd_scene load_steps=14 format=3 uid="uid://cexy13v0tvdum"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lnyua"]
 [ext_resource type="Texture2D" uid="uid://cvkcnew1f82y2" path="res://assets/tth.png" id="2_gpg1d"]
+[ext_resource type="Script" path="res://scripts/rotated_texture.gd" id="2_uvptb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4qbk"]
+atlas = ExtResource("2_gpg1d")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_kdtbi"]
+script = ExtResource("2_uvptb")
+rotation_target = -45.0
+texture = SubResource("AtlasTexture_h4qbk")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ve1r"]
+atlas = ExtResource("2_gpg1d")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_m4grk"]
+script = ExtResource("2_uvptb")
+rotation_target = -20.0
+texture = SubResource("AtlasTexture_0ve1r")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4evyb"]
+atlas = ExtResource("2_gpg1d")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_xr6r6"]
+script = ExtResource("2_uvptb")
+rotation_target = 0.0
+texture = SubResource("AtlasTexture_4evyb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0lqq"]
+atlas = ExtResource("2_gpg1d")
+region = Rect2(98, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_0oq1q"]
+script = ExtResource("2_uvptb")
+rotation_target = 20.0
+texture = SubResource("AtlasTexture_p0lqq")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kphec"]
+atlas = ExtResource("2_gpg1d")
+region = Rect2(130, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_pmbh5"]
+script = ExtResource("2_uvptb")
+rotation_target = 45.0
+texture = SubResource("AtlasTexture_kphec")
 
 [node name="Player" type="AnimatableBody2D"]
 sync_to_physics = false
 script = ExtResource("1_lnyua")
+rotated_textures = Array[ExtResource("2_uvptb")]([SubResource("Resource_kdtbi"), SubResource("Resource_m4grk"), SubResource("Resource_xr6r6"), SubResource("Resource_0oq1q"), SubResource("Resource_pmbh5")])
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-10, 5, 9, 5, 0, -16, -10, 5)
 
 [node name="Sprite" type="Sprite2D" parent="."]
+process_priority = 10
 texture = ExtResource("2_gpg1d")
-region_enabled = true
 region_rect = Rect2(64, 32, 32, 32)
