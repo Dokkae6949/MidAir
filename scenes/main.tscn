@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqw5kw4hssydu"]
+[gd_scene load_steps=7 format=3 uid="uid://bqw5kw4hssydu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5h3oh"]
 [ext_resource type="PackedScene" uid="uid://cexy13v0tvdum" path="res://scenes/player.tscn" id="1_dgsb5"]
 [ext_resource type="PackedScene" uid="uid://bc5in6j6v8i85" path="res://scenes/meteors/meteor_large.tscn" id="2_1jdno"]
 [ext_resource type="Script" path="res://scripts/MeteorManager.gd" id="2_exwdh"]
+[ext_resource type="Texture2D" uid="uid://b4u05jkn2wcbk" path="res://assets/background.png" id="2_hwh8e"]
 [ext_resource type="PackedScene" uid="uid://cigkullf3ruke" path="res://scenes/meteors/meteor_small.tscn" id="4_ofb3g"]
 
 [node name="Main" type="Node2D"]
@@ -12,25 +13,21 @@ script = ExtResource("1_5h3oh")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -10
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.184314, 0.172549, 0.168627, 1)
+texture = ExtResource("2_hwh8e")
 
 [node name="TimeScore" type="Label" parent="CanvasLayer"]
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_bottom = 11.5
+offset_bottom = 42.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_color = Color(0.113932, 0.105543, 0.102746, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 text = "12:20:323"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -40,3 +37,4 @@ vertical_alignment = 1
 [node name="MeteorManager" type="Node2D" parent="."]
 script = ExtResource("2_exwdh")
 meteors = Array[PackedScene]([ExtResource("2_1jdno"), ExtResource("4_ofb3g")])
+movement_speed_increase = 2.5
