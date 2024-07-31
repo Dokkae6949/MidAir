@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cigkullf3ruke"]
 
-[ext_resource type="Texture2D" uid="uid://cvkcnew1f82y2" path="res://assets/tth.png" id="1_qo03g"]
+[ext_resource type="Texture2D" uid="uid://bixmsqa0ecy45" path="res://assets/rocks.png" id="1_ophgx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
 radius = 5.5
@@ -9,7 +9,7 @@ radius = 5.5
 
 [node name="MeteorSmall" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
-texture = ExtResource("1_qo03g")
+texture = ExtResource("1_ophgx")
 region_enabled = true
 region_rect = Rect2(98, 0, 32, 32)
 

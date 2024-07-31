@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://bc5in6j6v8i85"]
 
-[ext_resource type="Texture2D" uid="uid://cvkcnew1f82y2" path="res://assets/tth.png" id="1_3bixu"]
+[ext_resource type="Texture2D" uid="uid://bixmsqa0ecy45" path="res://assets/rocks.png" id="1_hmr1k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
 
 [node name="MeteorLarge" type="Area2D"]
 
 [node name="MeteorLarge" type="Sprite2D" parent="."]
-texture = ExtResource("1_3bixu")
+texture = ExtResource("1_hmr1k")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
