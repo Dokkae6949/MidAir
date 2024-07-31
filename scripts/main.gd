@@ -4,6 +4,8 @@ extends Node2D
 @onready var player: Area2D = $Player
 @onready var time_score: Label = $CanvasLayer/TimeScore
 @onready var game_over: VBoxContainer = $CanvasLayer/GameOver
+@onready var game_over_background: ColorRect = $CanvasLayer/GameOverBackground
+
 
 var _game_over: bool = false
 var _time_score: int = 0
@@ -11,6 +13,7 @@ var _time_score: int = 0
 
 func _ready() -> void:
 	game_over.hide()
+	game_over_background.hide()
 	
 	player.position.x = get_viewport_rect().size.x / 2
 	player.position.y = get_viewport_rect().size.y - get_viewport_rect().size.y / 10
@@ -40,5 +43,6 @@ func _update_time_score(delta: float) -> void:
 func _on_player_hit(player: Player, other: Node2D) -> void:
 	_game_over = true
 	game_over.show()
+	game_over_background.show()
 	
 	SignalBus.game_over.emit()
