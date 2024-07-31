@@ -48,6 +48,8 @@ func _physics_process(delta: float) -> void:
 	
 	for child: CollisionObject2D in get_children():
 		child.position += movement * child.get_meta(MOVEMENT_SPEED_MULTIPLIER_META_NAME, 1.0)
+		if child.position.y >= get_viewport_rect().size.y + 50:
+			child.queue_free()
 	
 	movement_speed += movement_speed_increase * delta
 	_spawn_distance -= movement_speed * delta
