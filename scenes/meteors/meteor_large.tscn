@@ -4,8 +4,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
 
-[node name="MeteorLarge" type="AnimatableBody2D"]
-sync_to_physics = false
+[node name="MeteorLarge" type="Area2D"]
 
 [node name="MeteorLarge" type="Sprite2D" parent="."]
 texture = ExtResource("1_3bixu")

@@ -1,6 +1,8 @@
-extends AnimatableBody2D
+class_name Player
+extends Area2D
 
 
+@export var enabled: bool = true
 @export var rotated_textures: Array[RotatedTexture]
 @export_group("Movement")
 ## The amount of rotation to the left/right that should be applied
@@ -11,12 +13,21 @@ extends AnimatableBody2D
 @export var allow_rotation_reset: bool = false
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var collider: CollisionPolygon2D = $CollisionPolygon2D
 
 var _target_rotation_degrees: float = 0.0
 var _rotation_degrees: float = 0.0
 
 
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+	area_entered.connect(_on_area_entered)
+	SignalBus.game_over.connect(_on_game_over)
+
+
 func _process(delta: float) -> void:
+	if !enabled: return
+	
 	var input = Input.get_axis("player_move_left", "player_move_right");
 	
 	if input < 0:
@@ -30,6 +41,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !enabled: return
+	
 	_rotation_degrees = lerpf(_rotation_degrees, _target_rotation_degrees, rotation_speed * delta)
 	
 	# Movement input depends on how much we have rotated compared to the target rotation
@@ -57,3 +70,15 @@ func _update_sprite() -> void:
 			closest = rotated_texture
 	if sprite.texture != closest.texture:
 		sprite.texture = closest.texture
+		sprite.position = closest.texture_offset
+		collider.rotation_degrees = closest.rotation_target
+
+
+func _on_body_entered(body: Node2D) -> void:
+	SignalBus.player_hit.emit(self, body)
+
+func _on_area_entered(body: Node2D) -> void:
+	SignalBus.player_hit.emit(self, body)
+
+func _on_game_over() -> void:
+	enabled = false

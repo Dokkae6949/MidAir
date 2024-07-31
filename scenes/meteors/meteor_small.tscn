@@ -5,8 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
 radius = 5.5
 
-[node name="MeteorSmall" type="AnimatableBody2D"]
-sync_to_physics = false
+[node name="MeteorSmall" type="Area2D"]
 
 [node name="MeteorSmall" type="Sprite2D" parent="."]
 position = Vector2(2, 0)

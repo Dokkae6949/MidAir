@@ -1,8 +1,10 @@
+class_name MeteorManager
 extends Node2D
 
 
 const MOVEMENT_SPEED_MULTIPLIER_META_NAME = "movement_speed_multiplier"
 
+@export var enabled: bool = true
 @export_group("Spawning")
 @export var meteors: Array[PackedScene]
 @export var spawn_distance_min: float = 50.0
@@ -19,10 +21,13 @@ var _spawn_distance: float = 0.0
 
 
 func _ready() -> void:
-	for i in range(10, 2):
-		print(i)
+	SignalBus.player_hit.connect(_on_player_hit)
+	SignalBus.game_over.connect(_on_game_over)
+
 
 func _process(delta: float) -> void:
+	if !enabled: return
+	
 	if _spawn_distance <= 0.0:
 		_spawn_distance = randf_range(spawn_distance_min, spawn_distance_max)
 		
@@ -30,17 +35,26 @@ func _process(delta: float) -> void:
 			return
 		
 		var meteor_scene = meteors.pick_random()
-		var meteor: AnimatableBody2D = meteor_scene.instantiate()
+		var meteor: CollisionObject2D = meteor_scene.instantiate()
 		add_child(meteor)
 		meteor.position = Vector2(randf_range(0, get_viewport_rect().size.x), 0)
 		meteor.rotation_degrees = randf_range(-180, 180)
 		meteor.set_meta(MOVEMENT_SPEED_MULTIPLIER_META_NAME, randf_range(movement_speed_multiplier_min, movement_speed_multiplier_max))
 
 func _physics_process(delta: float) -> void:
+	if !enabled: return
+	
 	var movement = movement_direction * movement_speed * delta
 	
-	for child: AnimatableBody2D in get_children():
+	for child: CollisionObject2D in get_children():
 		child.position += movement * child.get_meta(MOVEMENT_SPEED_MULTIPLIER_META_NAME, 1.0)
 	
 	movement_speed += movement_speed_increase * delta
 	_spawn_distance -= movement_speed * delta
+
+
+func _on_player_hit(player: Player, other: Node2D) -> void:
+	pass
+
+func _on_game_over() -> void:
+	enabled = false
