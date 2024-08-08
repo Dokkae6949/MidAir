@@ -22,7 +22,7 @@ var _rotation_degrees: float = 0.0
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
-	SignalBus.game_over.connect(_on_game_over)
+	GameManager.game_over.connect(_on_game_over)
 
 
 func _process(delta: float) -> void:
@@ -75,10 +75,10 @@ func _update_sprite() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	SignalBus.player_hit.emit(self, body)
+	GameManager.player_hit.emit(self, body)
 
 func _on_area_entered(body: Node2D) -> void:
-	SignalBus.player_hit.emit(self, body)
+	GameManager.player_hit.emit(self, body)
 
 func _on_game_over() -> void:
 	enabled = false

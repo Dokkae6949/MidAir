@@ -18,7 +18,8 @@ func _ready() -> void:
 	player.position.x = get_viewport_rect().size.x / 2
 	player.position.y = get_viewport_rect().size.y - get_viewport_rect().size.y / 10
 	
-	SignalBus.player_hit.connect(_on_player_hit)
+	GameManager.player_hit.connect(_on_player_hit)
+
 
 func _process(delta: float) -> void:
 	if _game_over: 
@@ -45,4 +46,4 @@ func _on_player_hit(player: Player, other: Node2D) -> void:
 	game_over.show()
 	game_over_background.show()
 	
-	SignalBus.game_over.emit()
+	GameManager.game_over.emit()

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdwfonye81efr"]
+
+[ext_resource type="Texture2D" uid="uid://bywnegvgxb8co" path="res://assets/star.png" id="1_7yo8h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
+radius = 14.5
+
+[node name="PowerupStar" type="Area2D"]
+
+[node name="Star" type="Sprite2D" parent="."]
+texture = ExtResource("1_7yo8h")
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rcw44")

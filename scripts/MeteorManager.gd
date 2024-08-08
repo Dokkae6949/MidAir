@@ -7,8 +7,8 @@ const MOVEMENT_SPEED_MULTIPLIER_META_NAME = "movement_speed_multiplier"
 @export var enabled: bool = true
 @export_group("Spawning")
 @export var meteors: Array[PackedScene]
-@export var spawn_distance_min: float = 50.0
-@export var spawn_distance_max: float = 120.0
+@export var spawn_distance_min: float = 1800.0
+@export var spawn_distance_max: float = 5000.0
 @export_group("Movement")
 @export var movement_speed: float = 40.0
 @export var movement_speed_multiplier_min = 0.9
@@ -21,8 +21,8 @@ var _spawn_distance: float = 0.0
 
 
 func _ready() -> void:
-	SignalBus.player_hit.connect(_on_player_hit)
-	SignalBus.game_over.connect(_on_game_over)
+	GameManager.player_hit.connect(_on_player_hit)
+	GameManager.game_over.connect(_on_game_over)
 
 
 func _process(delta: float) -> void:
@@ -44,15 +44,15 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if !enabled: return
 	
-	var movement = movement_direction * movement_speed * delta
+	var movement = movement_direction * movement_speed * delta * GameManager.time_scale
 	
 	for child: CollisionObject2D in get_children():
 		child.position += movement * child.get_meta(MOVEMENT_SPEED_MULTIPLIER_META_NAME, 1.0)
 		if child.position.y >= get_viewport_rect().size.y + 50:
 			child.queue_free()
 	
-	movement_speed += movement_speed_increase * delta
-	_spawn_distance -= movement_speed * delta
+	movement_speed += movement_speed_increase * delta * GameManager.time_scale
+	_spawn_distance -= movement_speed
 
 
 func _on_player_hit(player: Player, other: Node2D) -> void:
