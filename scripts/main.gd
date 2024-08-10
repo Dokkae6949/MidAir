@@ -42,6 +42,8 @@ func _update_time_score(delta: float) -> void:
 
 
 func _on_player_hit(player: Player, other: Node2D) -> void:
+	if !other.is_in_group("obstacle"): return
+	
 	_game_over = true
 	game_over.show()
 	game_over_background.show()

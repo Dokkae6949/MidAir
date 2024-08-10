@@ -4,7 +4,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rcw44"]
 
-[node name="MeteorLarge" type="Area2D"]
+[node name="MeteorLarge" type="Area2D" groups=["obstacle"]]
 
 [node name="MeteorLarge" type="Sprite2D" parent="."]
 texture = ExtResource("1_hmr1k")

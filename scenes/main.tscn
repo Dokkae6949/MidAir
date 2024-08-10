@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqw5kw4hssydu"]
+[gd_scene load_steps=8 format=3 uid="uid://bqw5kw4hssydu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5h3oh"]
 [ext_resource type="PackedScene" uid="uid://cexy13v0tvdum" path="res://scenes/player.tscn" id="1_dgsb5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/MeteorManager.gd" id="2_exwdh"]
 [ext_resource type="Texture2D" uid="uid://b4u05jkn2wcbk" path="res://assets/background.png" id="2_hwh8e"]
 [ext_resource type="PackedScene" uid="uid://cigkullf3ruke" path="res://scenes/meteors/meteor_small.tscn" id="4_ofb3g"]
+[ext_resource type="PackedScene" uid="uid://cdwfonye81efr" path="res://scenes/powerups/powerup_star.tscn" id="7_jf6m3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5h3oh")
@@ -68,4 +69,9 @@ vertical_alignment = 1
 [node name="MeteorManager" type="Node2D" parent="."]
 script = ExtResource("2_exwdh")
 meteors = Array[PackedScene]([ExtResource("2_1jdno"), ExtResource("4_ofb3g")])
+power_ups = Array[PackedScene]([ExtResource("7_jf6m3")])
 movement_speed_increase = 2.5
+
+[node name="PowerUpStarTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
